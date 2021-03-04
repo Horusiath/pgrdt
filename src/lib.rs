@@ -9,7 +9,7 @@ use pgx::*;
 pg_module_magic!();
 
 /// A vector version data type. It allows to track causality of events.
-#[derive(PostgresType, Debug, Clone, Serialize, Deserialize)]
+#[derive(PostgresType, Debug, Clone, Hash, Serialize, Deserialize)]
 #[allow(non_camel_case_types)] // we don't want PascalCase in Postgres qualified names
 pub struct vectime(BTreeMap<String, i64>);
 

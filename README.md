@@ -1,6 +1,6 @@
 # pgrdt
 
-A bunch of utilities for building conflict free data types build as an extension written in Rust. It's build on top of [pgx](https://github.com/zombodb/pgx). In order to build and run the extension, make sure that your Linux machine has postgres devel libraries in place:
+A bunch of utilities for building conflict-free replicated data types build as an extension written in Rust. It's build on top of [pgx](https://github.com/zombodb/pgx). In order to build and run the extension, make sure that your Linux machine has postgres devel libraries in place:
 
 ```bash
 cargo install cargo-pgx
@@ -50,7 +50,7 @@ insert into counters(name, inc, dec) values('orders');
 -- increment value of orders
 update counters set inc = increment(inc, 'A') where name = 'orders';
 -- decrement value of orders
-update counters set inc = increment(dec, 'A') where name = 'orders';
+update counters set dec = increment(dec, 'A') where name = 'orders';
 -- get sum of all ordes using PN-Counter semantics
 select valueof(inc) - valueof(dec) from counters;
 ```
